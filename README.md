@@ -15,7 +15,7 @@ As I am currently beginning the tutorial, my goals are to better understand mult
 
 ### To-do list
 
-- [] Complete tutorial 
+- [ ] Complete tutorial 
 
 ### Instructions
 
