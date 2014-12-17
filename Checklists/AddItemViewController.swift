@@ -1,12 +1,9 @@
-//
-//  AddItemViewController.swift
-//  Checklists
-//
-//  Created by Andrew Hercules on 2014-12-17.
-//  Copyright (c) 2014 Andrew Hercules. All rights reserved.
-//
-
 import UIKit
+
+protocol AddItemViewControllerDelegate: class {
+  func addItemViewControllerDidCancel(controller: AddItemViewController)
+  func addItemViewController(controller: AddItemViewController, didFinishAddingItem item: ChecklistItem)
+}
 
 class AddItemViewController: UITableViewController, UITextFieldDelegate {
 
@@ -17,14 +14,19 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
   
   @IBOutlet weak var doneBarButton: UIBarButtonItem!
   @IBOutlet weak var textField: UITextField!
+ 
+  weak var delegate: AddItemViewControllerDelegate?
   
   @IBAction func cancel() {
-    dismissViewControllerAnimated(true, completion: nil)
+    delegate?.addItemViewControllerDidCancel(self)
   }
   
   @IBAction func done() {
+    let item = ChecklistItem()
+    item.text = textField.text
+    item.checked = false
+    delegate?.addItemViewController(self, didFinishAddingItem: item)
     println("Contents of the text field: \(textField.text)")
-    dismissViewControllerAnimated(true, completion: nil)
   }
   
   override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
@@ -35,11 +37,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     let oldText: NSString = textField.text
     let newText: NSString = oldText.stringByReplacingCharactersInRange(
       range, withString: string)
-    if newText.length > 0 {
-        doneBarButton.enabled = true
-      } else {
-        doneBarButton.enabled = false
-    }
+    doneBarButton.enabled = (newText.length > 0)
     return true
   }
   
