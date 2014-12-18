@@ -11,7 +11,7 @@ Checklists is the second tutorial from the iOS Apprentice Series from [RayWender
 
 ### Learning Outcomes
 
-As I am currently beginning the tutorial, my goals are to better understand multi-page applications and how to properly use the table view controller. 
+As I am currently beginning the tutorial, my goals are to better understand multi-page applications and how to properly use the table view controller. I also want to better understand the following Swift concepts: protocols, delegates, optionals, and the weak/strong object relationship principle. 
 
 ### To-do list
 
