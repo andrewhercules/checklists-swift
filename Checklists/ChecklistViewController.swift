@@ -1,6 +1,6 @@
 import UIKit
 
-class ChecklistViewController: UITableViewController {
+class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate {
 
   var items: [ChecklistItem]
   
@@ -101,5 +101,20 @@ class ChecklistViewController: UITableViewController {
     let indexPaths = [indexPath]
     tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
   }
+  
+  func addItemViewControllerDidCancel(controller: AddItemViewController) { dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  func addItemViewController(controller: AddItemViewController, didFinishAddingItem item: ChecklistItem) {
+    dismissViewControllerAnimated(true, completion: nil)
+  }
 
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "AddItem" {
+      let navigationController = segue.destinationViewController as UINavigationController
+      let controller = navigationController.topViewController as AddItemViewController
+      controller.delegate = self
+    }
+  }
+  
 }
