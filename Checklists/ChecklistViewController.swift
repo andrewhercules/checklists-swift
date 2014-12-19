@@ -117,5 +117,14 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
       }
     }
   }
+  
+  func addItemViewController(controller: AddItemViewController, didFinishEditingItem item: ChecklistItem) {
+    if let index = find(items, item) {
+      let indexPath = NSIndexPath(forRow: index, inSection: 0)
+      if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+        configureTextForCell(cell, withChecklistItem: item) }
+          }
+      dismissViewControllerAnimated(true, completion: nil)
+    }
 
 }
