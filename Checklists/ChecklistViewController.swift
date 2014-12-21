@@ -72,12 +72,14 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
       configureCheckmarkForCell(cell, withChecklistItem: item)
     }
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    saveChecklistItems()
   }
   
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     items.removeAtIndex(indexPath.row)
     let indexPaths = [indexPath]
     tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+    saveChecklistItems()
   }
 
   func configureCheckmarkForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
@@ -104,6 +106,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     let indexPaths = [indexPath]
     tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
     dismissViewControllerAnimated(true, completion: nil)
+    saveChecklistItems()
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -127,8 +130,9 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
       if let cell = tableView.cellForRowAtIndexPath(indexPath) {
         configureTextForCell(cell, withChecklistItem: item) }
           }
-      dismissViewControllerAnimated(true, completion: nil)
-    }
+    dismissViewControllerAnimated(true, completion: nil)
+    saveChecklistItems()
+  }
   
   func documentsDirectory() -> String {
     let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as [String]
@@ -137,6 +141,14 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
   
   func dataFilePath() -> String {
     return documentsDirectory().stringByAppendingPathComponent("Checklists.plist")
+  }
+
+  func saveChecklistItems() {
+    let data = NSMutableData()
+    let archiver = NSKeyedArchiver (forWritingWithMutableData: data)
+    archiver.encodeObject(items, forKey: "Checklist Items")
+    archiver.finishEncoding()
+    data.writeToFile(dataFilePath(), atomically: true)
   }
 
 }
