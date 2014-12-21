@@ -5,46 +5,26 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
   var items: [ChecklistItem]
   
   required init(coder aDecoder: NSCoder) {
-    
     items = [ChecklistItem]()
-    
-    let row0item = ChecklistItem()
-    row0item.text = "Get a coffee"
-    row0item.checked = false
-    items.append(row0item)
-    
-    let row1item = ChecklistItem()
-    row1item.text = "Pay mobile phone bill"
-    row1item.checked = true
-    items.append(row1item)
-    
-    let row2item = ChecklistItem()
-    row2item.text = "Go to gymnastics"
-    row2item.checked = true
-    items.append(row2item)
-    
-    let row3item = ChecklistItem()
-    row3item.text = "Buy gifts"
-    row3item.checked = false
-    items.append(row3item)
-    
-    let row4item = ChecklistItem()
-    row4item.text = "Donate to holiday toy drive"
-    row4item.checked = true
-    items.append(row4item)
-    
-    let row5item = ChecklistItem()
-    row5item.text = "Buy bus tokens"
-    row5item.checked = false
-    items.append(row5item)
-    
     super.init(coder: aDecoder)
-  
+    
+    loadChecklistItems()
+    
     println("Documents folder is \(documentsDirectory())")
     println("Data file path is \(dataFilePath())")
-    
   }
   
+  func loadChecklistItems() {
+    let path = dataFilePath()
+    if NSFileManager.defaultManager().fileExistsAtPath(path) {
+      if let data = NSData(contentsOfFile: path) {
+      let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+      items = unarchiver.decodeObjectForKey("ChecklistItems") as [ChecklistItem]
+      unarchiver.finishDecoding()
+      }
+    }
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
   }
@@ -146,9 +126,9 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
   func saveChecklistItems() {
     let data = NSMutableData()
     let archiver = NSKeyedArchiver (forWritingWithMutableData: data)
-    archiver.encodeObject(items, forKey: "Checklist Items")
+    archiver.encodeObject(items, forKey: "ChecklistItems")
     archiver.finishEncoding()
     data.writeToFile(dataFilePath(), atomically: true)
   }
-
+  
 }
