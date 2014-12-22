@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--Checklists-->
+        <!--(Name of the Checklist)-->
         <scene sceneID="rNc-Sh-Cmj">
             <objects>
                 <tableViewController id="8Xc-K1-fQh" customClass="ChecklistViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
@@ -42,7 +42,7 @@
                             <outlet property="delegate" destination="8Xc-K1-fQh" id="EAs-Y5-flk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Checklists" id="6lJ-eM-33T">
+                    <navigationItem key="navigationItem" title="(Name of the Checklist)" id="6lJ-eM-33T">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lZb-Wi-t44">
                             <connections>
                                 <segue destination="EgO-XW-bjl" kind="presentation" identifier="AddItem" id="8RE-0K-AEf"/>
@@ -122,12 +122,34 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="8Xc-K1-fQh" kind="relationship" relationship="rootViewController" id="cTC-hB-Vrv"/>
+                        <segue destination="8Jt-pj-2ww" kind="relationship" relationship="rootViewController" id="VH9-fd-f9W"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EEC-ND-b04" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-66" y="613"/>
+            <point key="canvasLocation" x="-758" y="608"/>
+        </scene>
+        <!--Checklists-->
+        <scene sceneID="ByJ-70-y6F">
+            <objects>
+                <tableViewController id="8Jt-pj-2ww" customClass="AllListsViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bix-xY-v1i">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="8Jt-pj-2ww" id="hIb-sP-rDV"/>
+                            <outlet property="delegate" destination="8Jt-pj-2ww" id="aqc-vC-TN5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Checklists" id="L9d-Wp-RUV"/>
+                    <connections>
+                        <segue destination="8Xc-K1-fQh" kind="show" identifier="ShowChecklist" id="crc-le-84V"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vbI-mL-2ws" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-93" y="608"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jGI-cP-NxA">
