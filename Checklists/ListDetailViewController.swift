@@ -1,33 +1,33 @@
 import UIKit
 
 protocol ListDetailViewControllerDelegate: class {
-  
   func listDetailViewControllerDidCancel(controller: ListDetailViewController)
-  
   func listDetailViewController(controller: ListDetailViewController, didFinishAddingChecklist checklist: Checklist)
   func listDetailViewController(controller: ListDetailViewController, didFinishEditingChecklist checklist: Checklist)
 }
 
 class ListDetailViewController: UITableViewController, UITextFieldDelegate {
-  
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var doneBarButton: UIBarButtonItem!
+  
   weak var delegate: ListDetailViewControllerDelegate?
+  
   var checklistToEdit: Checklist?
-
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    textField.becomeFirstResponder()
-  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.rowHeight = 44
+    
     if let checklist = checklistToEdit {
       title = "Edit Checklist"
       textField.text = checklist.name
       doneBarButton.enabled = true
     }
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    textField.becomeFirstResponder()
   }
   
   @IBAction func cancel() {
@@ -45,7 +45,7 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
   }
   
   override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-      return nil
+    return nil
   }
   
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
@@ -54,5 +54,4 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
     doneBarButton.enabled = (newText.length > 0)
     return true
   }
-  
 }
