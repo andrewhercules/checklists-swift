@@ -5,6 +5,7 @@ class DataModel {
   
   init() {
     loadChecklists()
+//    println("Documents folder is \(documentsDirectory())")
   }
   
   func documentsDirectory() -> String {
