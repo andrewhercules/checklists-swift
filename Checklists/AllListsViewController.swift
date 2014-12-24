@@ -5,23 +5,9 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
   var lists: [Checklist]
   
   required init(coder aDecoder: NSCoder) {
-    
     lists = [Checklist]()
     super.init(coder: aDecoder)
-    var list = Checklist(name: "Birthdays")
-    lists.append(list)
-    list = Checklist(name: "Groceries")
-    lists.append(list)
-    list = Checklist(name: "Cool Apps")
-    lists.append(list)
-    list = Checklist(name: "To Do")
-    lists.append(list)
-  
-    for list in lists {
-      let item = ChecklistItem()
-      item.text = "Item for \(list.name)"
-      list.items.append(item)
-    }
+    loadChecklists()
   }
   
   override func viewDidLoad() {
@@ -105,4 +91,33 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     controller.checklistToEdit = checklist
     presentViewController(navigationController, animated: true, completion: nil)
   }
+  
+  func documentsDirectory() -> String {
+    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as [String]
+    return paths[0]
+  }
+  
+  func dataFilePath() -> String {
+    return documentsDirectory().stringByAppendingPathComponent("Checklists.plist")
+  }
+  
+  func saveChecklists() {
+    let data = NSMutableData()
+    let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+    archiver.encodeObject(lists, forKey: "Checklists")
+    archiver.finishEncoding()
+    data.writeToFile(dataFilePath(), atomically: true)
+  }
+  
+  func loadChecklists() {
+    let path = dataFilePath()
+    if NSFileManager.defaultManager().fileExistsAtPath(path) {
+      if let data = NSData(contentsOfFile: path) {
+      let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+      lists = unarchiver.decodeObjectForKey("Checklists") as [Checklist]
+      unarchiver.finishDecoding()
+      }
+    }
+  }
+
 }
