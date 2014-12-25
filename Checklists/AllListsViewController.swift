@@ -31,13 +31,13 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     let cellIdentifier = "Cell"
     var cell: UITableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? UITableViewCell
     if cell == nil {
-      cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+      cell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
     }
     
     let checklist = dataModel.lists[indexPath.row]
     cell.textLabel!.text = checklist.name
     cell.accessoryType = .DetailDisclosureButton
-    
+    cell.detailTextLabel!.text =￼ ￼"\(checklist.countUncheckedItems()) Remaining"
     return cell
   }
   
