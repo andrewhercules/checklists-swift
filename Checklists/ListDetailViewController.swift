@@ -6,7 +6,8 @@ protocol ListDetailViewControllerDelegate: class {
   func listDetailViewController(controller: ListDetailViewController, didFinishEditingChecklist checklist: Checklist)
 }
 
-class ListDetailViewController: UITableViewController, UITextFieldDelegate {
+class ListDetailViewController: UITableViewController, UITextFieldDelegate, IconPickerViewControllerDelegate {
+  
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var doneBarButton: UIBarButtonItem!
   
@@ -14,16 +15,31 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
   weak var delegate: ListDetailViewControllerDelegate?
   
   var checklistToEdit: Checklist?
+  var iconName = "Folder"
   
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.rowHeight = 44
-    
     if let checklist = checklistToEdit {
       title = "Edit Checklist"
       textField.text = checklist.name
       doneBarButton.enabled = true
+      iconName = checklist.iconName
     }
+    iconImageView.image = UIImage(named: iconName)
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "PickIcon" {
+      let controller = segue.destinationViewController as IconPickerViewController
+      controller.delegate = self
+    }
+  }
+  
+  func iconPicker(picker: IconPickerViewController, didPickIcon iconName: String) {
+    self.iconName = iconName
+    iconImageView.image = UIImage(named: iconName)
+    navigationController?.popViewControllerAnimated(true)
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -36,13 +52,15 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
   }
   
   @IBAction func done() {
-    if let checklist = checklistToEdit {
+      if let checklist = checklistToEdit {
       checklist.name = textField.text
+      checklist.iconName = iconName
       delegate?.listDetailViewController(self, didFinishEditingChecklist: checklist)
     } else {
       let checklist = Checklist(name: textField.text)
+      checklist.iconName = iconName
       delegate?.listDetailViewController(self, didFinishAddingChecklist: checklist)
-    }
+      }
   }
   
   override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {

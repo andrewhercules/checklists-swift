@@ -91,8 +91,12 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kgk-bo-05R" id="3Sf-dx-gau">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="piq-d7-VW1">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="piq-d7-VW1">
                                                     <rect key="frame" x="523" y="4" width="36" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="A8F-Qo-4Qw"/>
+                                                        <constraint firstAttribute="width" constant="36" id="lPe-fP-stM"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Icon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXx-mK-56r">
                                                     <rect key="frame" x="8" y="11" width="34" height="21"/>
@@ -101,9 +105,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="piq-d7-VW1" secondAttribute="trailing" constant="8" id="GIx-sz-uQP"/>
+                                                <constraint firstItem="piq-d7-VW1" firstAttribute="top" secondItem="3Sf-dx-gau" secondAttribute="top" constant="4" id="gVb-kc-1S7"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="hN2-Ve-Vis" kind="show" id="mvs-8W-D7f"/>
+                                            <segue destination="hN2-Ve-Vis" kind="show" identifier="PickIcon" id="mvs-8W-D7f"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
