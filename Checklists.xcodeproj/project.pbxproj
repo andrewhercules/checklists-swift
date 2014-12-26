@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		490B36FA1A4B3E6800BD3F51 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490B36F91A4B3E6800BD3F51 /* DataModel.swift */; };
 		496E44E91A48AD92005704D7 /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496E44E81A48AD92005704D7 /* AllListsViewController.swift */; };
+		4982D8391A4DC61200F09288 /* IconPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4982D8381A4DC61200F09288 /* IconPickerViewController.swift */; };
 		498CDDF41A41F7D6006AEDED /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CDDF31A41F7D6006AEDED /* ChecklistItem.swift */; };
 		4991F4461A48B6EB004660B5 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991F4451A48B6EB004660B5 /* Checklist.swift */; };
 		4991F4481A48BE41004660B5 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991F4471A48BE41004660B5 /* ListDetailViewController.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		490B36F91A4B3E6800BD3F51 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		496E44E81A48AD92005704D7 /* AllListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
+		4982D8381A4DC61200F09288 /* IconPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconPickerViewController.swift; sourceTree = "<group>"; };
 		498CDDF31A41F7D6006AEDED /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		4991F4451A48B6EB004660B5 /* Checklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		4991F4471A48BE41004660B5 /* ListDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				4991F4451A48B6EB004660B5 /* Checklist.swift */,
 				4991F4471A48BE41004660B5 /* ListDetailViewController.swift */,
 				490B36F91A4B3E6800BD3F51 /* DataModel.swift */,
+				4982D8381A4DC61200F09288 /* IconPickerViewController.swift */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				49CF53051A3FE3CF00E69332 /* ChecklistViewController.swift in Sources */,
 				4991F4481A48BE41004660B5 /* ListDetailViewController.swift in Sources */,
 				49B676241A42172B00D00200 /* ItemDetailViewController.swift in Sources */,
+				4982D8391A4DC61200F09288 /* IconPickerViewController.swift in Sources */,
 				4991F4461A48B6EB004660B5 /* Checklist.swift in Sources */,
 				498CDDF41A41F7D6006AEDED /* ChecklistItem.swift in Sources */,
 				490B36FA1A4B3E6800BD3F51 /* DataModel.swift in Sources */,
