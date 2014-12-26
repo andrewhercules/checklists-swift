@@ -320,4 +320,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="uWi-XL-lRL"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.0" green="0.2428147810218978" blue="0.56267107664233573" alpha="1" colorSpace="calibratedRGB"/>
 </document>
